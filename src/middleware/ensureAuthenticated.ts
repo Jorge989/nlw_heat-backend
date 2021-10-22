@@ -18,7 +18,7 @@ export function ensureAUthenticated(
   const [, token] = authToken.split("");
   try {
     const { sub } = verify(token, process.env.JWT_SECRET) as IPayload;
-    request.user_id = sub;
+    request.userId = sub;
     return next();
   } catch (err) {
     return response.status(401).json({ errorCode: "token.expired" });
